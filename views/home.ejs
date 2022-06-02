@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>
+        <%= title %>
+    </title>
+    <!-- font awosomecdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!--own css file-->
+    <link rel="stylesheet" href="/css/home.css">
+</head>
+
+<body>
+    <div id="mainDiv">
+        <div id="formDiv">
+
+            <div id="title">
+                <h1 id="title">
+                    <%= title %>
+                </h1>
+            </div>
+
+
+            <div id="form">
+                <form action="/create-todo" method="post">
+                    <hr>
+                    <div id="discription">
+                        <label for="">Discription</label><br>
+                        <input type="text" name="discription" placeholder="What do you need to do?" id="" required>
+                    </div>
+                    <hr>
+                    <div id="category">
+                        <label for="">category</label><br>
+                        <select name="category" id="" aria-placeholder="selct" required>
+                            <option value="personal">Personal</option>
+                            <option value="work">Work</option>
+                            <option value="schooling">Schooling</option>
+                            <option value="clen">Clen</option>
+                            <option value="other">Other</option>
+                        </select>
+
+                    </div>
+
+                    <div id="dueDate">
+                        <label for="">Due date</label><br>
+                        <input type="date" placeholder="dd-mm-yyyy" name="date" id="" required>
+                    </div>
+                    <hr>
+                    <div id="btnSubmit">
+                        <button type="submit"><span>+ </span> ADD TASK</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="todoListDiv">
+            <ul>
+                <% for(let i of todo_list) {%>
+                    <hr>
+                    <li>
+                        <div id="list">
+                            <div id="list-data">
+                                <div>
+                                    <p class="discrip">
+                                        <%= i.discription %>
+                                    </p>
+                                </div>
+                                <div>
+                                    <p class="colorGray">
+                                        <i class="fa-solid fa-calendar-days"></i>
+                                        <%= i.date %>
+                                    </p>
+                                </div>
+                            </div>
+                            <div id="btnDel">
+                                <div id="cate">
+                                    <p><%= i.category %></p>
+                                </div>
+
+                                <a href="/delete-todo?id=<%= i._id%>" id="deleteIcon">
+                                    <i class="fa-solid fa-circle-xmark  fa-2x"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <%}%>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>
